@@ -12,10 +12,10 @@ if (process.env.NODE_ENV === "test") {
   DB_URI = "postgresql:///biztime";
 }
 
-let db = new Client({
+let client = new Client({
   connectionString: DB_URI,
 });
 
-db.connect();
+client.connect();
 
-module.exports = db;
+module.exports = client;

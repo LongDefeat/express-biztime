@@ -3,7 +3,7 @@ const slugify = require("slugify");
 const ExpressError = require("../expressError");
 const db = require("../db");
 
-letrouter = new express.Router();
+let router = new express.Router();
 
 router.get("/", async function (req, res, next) {
   try {

@@ -2,14 +2,13 @@
 
 const express = require("express");
 
-const app = express();
 const ExpressError = require("./expressError");
-
-// Parse request bodies for JSON with this middleware
-app.use(express.json());
+const app = express();
 
 const cRoutes = require("./routes/companies");
 const iRoutes = require("./routes/invoices");
+// Parse request bodies for JSON with this middleware
+app.use(express.json());
 app.use("/companies", cRoutes);
 app.use("/invoices", iRoutes);
 
