@@ -6,11 +6,23 @@ CREATE DATABASE biztime;
 
 DROP TABLE IF EXISTS invoices;
 DROP TABLE IF EXISTS companies;
+DROP TABLE IF EXISTS industries;
 
 CREATE TABLE companies (
     code text PRIMARY KEY,
     name text NOT NULL UNIQUE,
     description text
+);
+
+CREATE TABLE industries (
+  code text PRIMARY KEY,
+  name text NOT NULL UNIQUE
+);
+
+CREATE TABLE companies_industries (
+  comp_code text NOT NULL REFERENCES companies,
+  ind_code text NOT NULL REFERENCES industries,
+  PRIMARY KEY (comp_code, ind_code)
 );
 
 CREATE TABLE invoices (
@@ -32,3 +44,17 @@ INSERT INTO invoices (comp_Code, amt, paid, paid_date)
          ('apple', 200, false, null),
          ('apple', 300, true, '2018-01-01'),
          ('ibm', 400, false, null);
+
+INSERT INTO industries
+  VALUES ('tech', 'Technology'),
+          ('hr', 'Human Resources'),
+          ('ed', 'Education'),
+          ('acct', 'Accounting')
+
+INSERT INTO companies_industries(
+  VALUES ('apple', 'tech'),
+        ('apple', 'ed'),
+        ('ibm', 'tech'),
+        ('apple', 'acct'),
+        ('ibm', 'hr')
+)
